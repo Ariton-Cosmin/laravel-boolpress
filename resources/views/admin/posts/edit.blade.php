@@ -11,11 +11,20 @@
       <form action="{{ route('admin.posts.update', $post) }}" method="POST">
         @csrf
         @method('PATCH')
+        <div class="mb-3">
+          <label class="label-control" for="title">Titolo</label>
+          <input type="text" id="title" name="title" 
+          value="{{ old('title') }}"
+          class="form-control @error('title') is-invalid @enderror">
+          @error('title')
+            <div class="text-danger">{{ $message }}</div>
+          @enderror
+        </div> 
 
         <div class="mb-3">
           <label class="label-control" for="title">Titolo</label>
           <input type="text" id="title" name="title" value="{{ $post->title }}" class="form-control">
-      </div>
+        </div>
 
         <div class="mb-3">
           <label class="label-control" for="content">Content</label>
