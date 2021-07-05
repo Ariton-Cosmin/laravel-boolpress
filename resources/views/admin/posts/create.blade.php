@@ -39,6 +39,19 @@
           @enderror
         </div>
 
+        <div class="mb-3">
+          <label class="lable-control" for="category_id">categorie</label>
+          <select class="form-control" @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
+            <option value="">selezionare una categoria</option>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+          </select>
+          @error('category_id')
+            <div class="text-danger">{{ $message }}</div>
+          @enderror
+        </div>
+
         <div>
           <button class="btn btn-primary" type="submit">Invio</button>
           <button class="btn btn-secondary" type="reset">Reset</button>
