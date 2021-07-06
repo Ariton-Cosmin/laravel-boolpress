@@ -44,10 +44,29 @@
           <select class="form-control" @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
             <option value="">selezionare una categoria</option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @if(old('category_id') == $category->id) selected @endif
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
           </select>
           @error('category_id')
+            <div class="text-danger">{{ $message }}</div>
+          @enderror
+        </div>
+
+        <div class="mb-3">
+          <h5>Tag</h5>
+          @foreach ($tags as $tag)
+              <span class="d-inline-block mr-3">
+                <input type="checkbox" 
+                  id="tag{{ $loop->iteration }}" 
+                  name="tags[]"
+                  value="{{ $tag->id }}"
+                  @if(in_array($tag->id, old('tags', []))) checked @endif
+                >
+                <label for="tag{{ $loop->iteration }}">{{ $tag->name }}</label>
+              </span>
+          @endforeach
+          @error('tags')
             <div class="text-danger">{{ $message }}</div>
           @enderror
         </div>
