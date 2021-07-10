@@ -3,12 +3,12 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-
 import Home from './pages/Home.vue';
 import About from './pages/About.vue';
 import Blog from './pages/Blog.vue';
 import Contact from './pages/Contact.vue';
 import Error404 from './pages/Error404.vue';
+import PostDatail from './pages/PostDetail.vue';
 
 const router = new VueRouter({
     mode: 'history',
@@ -34,7 +34,13 @@ const router = new VueRouter({
             component: Contact
         },
         {
+            path: '/detail/:slug',
+            name: 'detail',
+            component: PostDetail
+        },
+        {
             path: '/*',
+            name: 'error404',
             component: Error404
         }
     ]
